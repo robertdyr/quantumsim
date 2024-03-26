@@ -42,9 +42,12 @@ impl<T: Float> Complex<T> {
 }
 
 impl Magnitude for Complex<f64> {
-    type Output = f64;
+    type Output = Self;
     fn magnitude(&self) -> Self::Output {
-        (self.real + self.imagin).sqrt()
+        Self {
+            real: (self.real + self.imagin).sqrt(),
+            imagin: 0.0,
+        }
     }
 }
 

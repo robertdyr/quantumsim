@@ -8,19 +8,12 @@ use std::ops::Mul;
 
 use super::math::Magnitude;
 
-pub struct QuantumRegister<T>
-where
-    T: Mul<Output = T> + Copy + Magnitude + Zero + One,
-{
+pub struct QuantumRegister<T> {
     state_vector: Vec<T>,
     gates: Vec<Box<dyn Gate<T>>>,
 }
 
-impl QuantumRegister<f64>
-//where
-
-//T: Mul<Output = T> + Copy + Magnitude<Output = f64> + Zero + One,
-{
+impl QuantumRegister<f64> {
     pub fn new(amount_qubits: usize) -> Self {
         // This is simply to prevent me from creating registers that become too large.
         // Can be adjusted as desired.
@@ -107,8 +100,6 @@ impl QuantumRegister<f64>
         let mut collapse = 0u8;
         if rand_num < prob_1 {
             collapse = 1;
-        } else {
-            collapse = 0;
         }
 
         for (index, value) in self.state_vector.iter_mut().enumerate() {
